@@ -1,4 +1,4 @@
-networks:
+  networks:
   cowrie_local: null
   dionaea_local: null
   elasticpot_local: null
@@ -40,8 +40,7 @@ services:
     - '22:22'
     - '23:23'
     image: ${TPOT_REPO}/cowrie:${TPOT_VERSION}
-    build: ./docker/cowrie
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     read_only: true
     volumes:
     - ${TPOT_DATA_PATH}/cowrie/downloads:/home/cowrie/cowrie/dl
@@ -72,8 +71,7 @@ services:
     - 3306:3306
     - 27017:27017
     image: ${TPOT_REPO}/dionaea:${TPOT_VERSION}
-    build: ./docker/dionaea
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     read_only: true
     volumes:
     - ${TPOT_DATA_PATH}/dionaea/roots/ftp:/opt/dionaea/var/dionaea/roots/ftp
@@ -95,8 +93,7 @@ services:
     ports:
     - 9200:9200
     image: ${TPOT_REPO}/elasticpot:${TPOT_VERSION}
-    build: ./docker/elasticpot
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     read_only: true
     volumes:
     - ${TPOT_DATA_PATH}/elasticpot/log:/opt/elasticpot/log
@@ -112,8 +109,7 @@ services:
     - 5060:5060/tcp
     - 5060:5060/udp
     image: ${TPOT_REPO}/sentrypeer:${TPOT_VERSION}
-    build: ./docker/sentrypeer
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     read_only: true
     volumes:
     - ${TPOT_DATA_PATH}/sentrypeer/log:/var/log/sentrypeer
@@ -152,7 +148,6 @@ services:
     networks:
     - tanner_local
     image: ${TPOT_REPO}/tanner:${TPOT_VERSION}
-    build: ./docker/tanner/tanner
     pull_policy: never
     read_only: true
     volumes:
@@ -170,8 +165,7 @@ services:
     networks:
     - tanner_local
     image: ${TPOT_REPO}/tanner:${TPOT_VERSION}
-    build: ./docker/tanner/tanner
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     command: tanner
     read_only: true
     volumes:
