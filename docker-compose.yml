@@ -148,7 +148,7 @@ services:
     networks:
     - tanner_local
     image: ${TPOT_REPO}/tanner:${TPOT_VERSION}
-    pull_policy: never
+    pull_policy: ${T-POT_PULL_POLICY}
     read_only: true
     volumes:
     - ${TPOT_DATA_PATH}/tanner/log:/var/log/tanner
